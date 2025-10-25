@@ -9,7 +9,7 @@ const bot = new Telegraf("8406803082:AAGb_eMH2RWMHTJQ2aNh1Gc4jfKt0nT73OQ");
 
 // 🔹 /start komandasi uchun tugma chiqadi
 bot.start((ctx) => {
-  ctx.reply("🍒 Mevona mini ilovasiga xush kelibsiz!", {
+  ctx.reply("🍒 Mevonaga xush kelibsiz!", {
     reply_markup: {
       inline_keyboard: [
         [
