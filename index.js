@@ -2,24 +2,38 @@ import express from "express";
 import { Telegraf } from "telegraf";
 
 const app = express();
+const port = process.env.PORT || 3000;
 
-// Telegram botni ishga tushiramiz
-const bot = new Telegraf(process.env.BOT_TOKEN);
+// 🔹 Telegram bot tokenini shu yerga yoz
+const bot = new Telegraf("8406803082:AAGb_eMH2RWMHTJQ2aNh1Gc4jfKt0nT73OQ");
 
-// Boshlash komandasi
-bot.start((ctx) => ctx.reply("🍒 Mevona mini ilovasiga xush kelibsiz!"));
+// 🔹 /start komandasi uchun tugma chiqadi
+bot.start((ctx) => {
+  ctx.reply("🍒 Mevona mini ilovasiga xush kelibsiz!", {
+    reply_markup: {
+      inline_keyboard: [
+        [
+          {
+            text: "🌿 Mini ilovani ochish",
+            url: "https://temur3390.github.io/mevona-mini-app/", // ← bu SENING URLING
+          },
+        ],
+      ],
+    },
+  });
+});
 
-// Botni ishga tushiramiz
-bot.launch();
-
-// Web server (Render uchun)
-const PORT = process.env.PORT || 3000;
-app.use(express.static("public"));
-
+// 🔹 Render uchun oddiy server
 app.get("/", (req, res) => {
-  res.send("🍒 Mevona mini ilovasi Render’da ishlayapti!");
+  res.send("Mevona bot ishlayapti ✅");
 });
 
-app.listen(PORT, () => {
-  console.log(`🚀 Server ${PORT}-portda ishga tushdi`);
+// 🔹 Botni ishga tushirish
+bot.launch();
+app.listen(port, () => {
+  console.log(`🚀 Server ${port}-portda ishlayapti`);
 });
+
+// 🔹 Xavfsizlik uchun to‘xtatishda signal
+process.once("SIGINT", () => bot.stop("SIGINT"));
+process.once("SIGTERM", () => bot.stop("SIGTERM"));
