@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mevonga Xush Kelibsiz</title>
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  font-family: "Poppins", sans-serif;
+}
+
+.app {
+  width: 360px;
+  height: 640px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 40px;
+  box-shadow: 0 0 40px rgba(0,0,0,0.8);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  animation: fadeIn 1s ease forwards;
+}
+
+.app::after {
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image:url('https://wallpaperbat.com/img/404834-high-resolution-4k-ultra-hd-nature-wallpaper-hd.jpg');
+  background-size:cover;
+  background-position:center;
+  z-index:-1;
+  filter: blur(5px) brightness(0.8);
+}
+
+@keyframes fadeIn {from {transform: scale(0.95); opacity:0;} to {transform: scale(1); opacity:1;}}
+
+.welcome-text {
+  font-size: 1.8em;
+  font-weight: bold;
+  color:#fff;
+  margin-bottom:25px;
+  text-shadow:0 0 12px rgba(255,255,255,0.6);
+  z-index:2;
+  transition: opacity 0.5s ease;
+}
+
+.start-btn {
+  background: linear-gradient(90deg,#34d399,#10b981);
+  border:none;
+  color:white;
+  padding:14px 40px;
+  border-radius:30px;
+  font-size:1.1em;
+  font-weight:bold;
+  cursor:pointer;
+  transition:0.3s ease;
+  box-shadow:0 4px 15px rgba(16,185,129,0.5);
+  z-index:2;
+}
+
+.start-btn:hover {transform: scale(1.05); box-shadow: 0 8px 25px rgba(16,185,129,0.7);}
+
+.menu {
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:100%;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(20px) saturate(200%);
+  border-top-left-radius:35px;
+  border-top-right-radius:35px;
+  display:none;
+  justify-content:space-around;
+  align-items:center;
+  padding:12px 0;
+  box-shadow:0 -10px 30px rgba(0, 0, 0, 0.4);
+  z-index:3;
+}
+
+.menu.active {display:flex; animation: slideUp 0.6s ease;}
+
+@keyframes slideUp {from {transform: translateY(100%); opacity:0;} to {transform:translateY(0); opacity:1;}}
+
+.menu button {
+  background: rgba(255,255,255,0.15);
+  border:1px solid rgba(255,255,255,0.2);
+  border-radius:20px;
+  padding:10px 12px;
+  color:white;
+  font-size:0.85em;
+  font-weight:600;
+  width:60px;
+  height:60px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  backdrop-filter:blur(8px);
+  transition: all 0.3s ease;
+}
+
+.menu button:hover {transform:scale(1.1); background: rgba(255,255,255,0.3); box-shadow:0 0 15px rgba(255,255,255,0.4);}
+
+.app::before {
+  content:'';
+  position:absolute;
+  top:10px;
+  left:50%;
+  transform: translateX(-50%);
+  width:120px;
+  height:20px;
+  background: rgba(255,255,255,0.2);
+  border-radius:10px;
+}
+
+.center-image {
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%, -50%);
+  width:180px;
+  height:180px;
+  background-image: url('https://play-lh.googleusercontent.com/g8tfTqB-m61h1ajbBPf3gb6roJfk_3_b_agBbQWbUpqV-U80RXqxlIaKAB3opUbUqg');
+  background-size:cover;
+  background-position:center;
+  border-radius:50%;
+  opacity:0;
+  filter: blur(0px) brightness(1) drop-shadow(0 0 25px rgba(255,255,255,0.2));
+  mix-blend-mode: lighten;
+  transition: opacity 1s ease;
+  z-index:1;
+}
+
+.center-image.active {opacity:1; animation: fadeInSoft 1.5s ease forwards;}
+@keyframes fadeInSoft {from {transform:translate(-50%,-50%) scale(0.9); opacity:0; filter:blur(8px);} to {transform:translate(-50%,-50%) scale(1); opacity:1; filter:blur(0);}}
+
+.top-left-panel {
+  position:absolute;
+  top:20px;
+  left:20px;
+  display:none;
+  align-items:center;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(15px);
+  padding:10px 12px;
+  border-radius:20px;
+  color:white;
+  font-weight:600;
+  z-index:5;
+  box-shadow:0 4px 15px rgba(0,0,0,0.4);
+}
+
+.top-left-panel img {width:50px; height:50px; border-radius:50%; margin-right:10px; object-fit:cover; border:2px solid rgba(255,255,255,0.3);}
+.balance-lvl {display:flex; flex-direction:column; justify-content:center; font-size:0.9em;}
+.balance-lvl .balance {margin-bottom:4px; font-size:1em;}
+.balance-lvl .lvl {font-size:0.8em; color:#d1fae5;}
+
+/* 🌟 Gildirak */
+.wheel-container {
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  display:none;
+  flex-direction:column;
+  align-items:center;
+  z-index:10;
+  opacity:1;
+  transition: all 0.5s ease;
+}
+
+.wheel-container.hide {
+  transform: translate(-50%,-150%);
+  opacity:0;
+}
+
+.wheel {
+  width:250px;
+  height:250px;
+  border-radius:50%;
+  border:6px solid #facc15; /* sariq rang */
+  background: conic-gradient(#fbbf24 0 60deg, #f59e0b 60deg 120deg, #fbbf24 120deg 180deg, #f59e0b 180deg 240deg, #fbbf24 240deg 300deg, #f59e0b 300deg 360deg);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  cursor:pointer;
+  transition: transform 1.5s cubic-bezier(0.33,1,0.68,1);
+  position: relative;
+}
+
+.wheel-sticker {
+  position:absolute;
+  width:40px;
+  height:40px;
+  background: rgba(255,255,255,0.8);
+  border-radius:50%;
+  border:2px solid #fbbf24;
+  top:50%;
+  left:50%;
+  transform: translate(-50%, -50%);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:1.2em;
+  animation: rotateSticker 1.5s linear infinite;
+}
+
+@keyframes rotateSticker {
+  from {transform: translate(-50%, -50%) rotate(0deg);}
+  to {transform: translate(-50%, -50%) rotate(360deg);}
+}
+
+/* Ortga tugma oynasimon va qalin */
+.back-btn {
+  margin-top:20px;
+  padding:12px 24px;
+  border:none;
+  border-radius:30px;
+  background: rgba(255,255,255,0.25);
+  backdrop-filter: blur(8px);
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+  box-shadow:0 4px 20px rgba(0,0,0,0.3);
+  transition: all 0.5s ease;
+}
+.back-btn:hover {background: rgba(255,255,255,0.35);}
+</style>
+</head>
+<body>
+
+<div class="app">
+  <div class="welcome-text" id="welcome-text">🍇 Mevonga Xush Kelibsiz!</div>
+  <button class="start-btn" onclick="showMenu()">Boshlash</button>
+
+  <div class="top-left-panel" id="profile-panel">
+    <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Profil">
+    <div class="balance-lvl">
+      <div class="balance">💰 1200 so’m</div>
+      <div class="lvl">LVL 12</div>
+    </div>
+  </div>
+
+  <div class="center-image" id="center-image"></div>
+
+  <div class="menu" id="menu">
+    <button onclick="showWheel()">🎡<br>Spin</button>
+    <button>💰<br>Tariflar</button>
+    <button>🎁<br>Bonus</button>
+    <button>💎<br>Balans</button>
+    <button>👤<br>Akaunt</button>
+  </div>
+
+  <!-- Gildirak -->
+  <div class="wheel-container" id="wheel-container">
+    <div class="wheel" id="wheel">
+      <div class="wheel-sticker">🍉</div>
+    </div>
+    <button class="back-btn" onclick="hideWheel()">Ortga</button>
+  </div>
+</div>
+
+<script>
+function showMenu(){
+  const menu = document.getElementById('menu');
+  const welcomeText = document.getElementById('welcome-text');
+  const startBtn = document.querySelector('.start-btn');
+  const centerImage = document.getElementById('center-image');
+  const profilePanel = document.getElementById('profile-panel');
+
+  welcomeText.style.opacity='0';
+  startBtn.style.opacity='0';
+
+  setTimeout(()=>{
+    welcomeText.style.display='none';
+    startBtn.style.display='none';
+    menu.classList.add('active');
+    centerImage.classList.add('active');
+    profilePanel.style.display='flex';
+  },600);
+}
+
+function showWheel(){
+  document.getElementById('menu').style.display='none';
+  const wheelContainer = document.getElementById('wheel-container');
+  wheelContainer.classList.remove('hide');
+  wheelContainer.style.display='flex';
+}
+
+function hideWheel(){
+  const wheelContainer = document.getElementById('wheel-container');
+  wheelContainer.classList.add('hide');
+  setTimeout(()=>{wheelContainer.style.display='none'; document.getElementById('menu').style.display='flex';},500);
+}
+
+// Gildirak aylanishi
+const wheel = document.getElementById('wheel');
+let spinning=false;
+wheel.addEventListener('click', ()=>{
+  if(spinning) return;
+  spinning=true;
+  const randomDeg = Math.floor(Math.random()*360)+1080; 
+  wheel.style.transition='transform 1s cubic-bezier(0.33,1,0.68,1)';
+  wheel.style.transform=`rotate(${randomDeg}deg)`;
+  setTimeout(()=>{spinning=false;},1000);
+});
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
