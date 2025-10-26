@@ -64,7 +64,7 @@
     transform: translateX(-50%);
     display: flex;
     justify-content: space-around;
-    gap: 12px;
+    gap: 10px;
     background: transparent;
     padding: 12px;
     width: 95%;
@@ -74,20 +74,29 @@
 
   .menu button {
     flex: 1;
-    font-size: clamp(12px, 3vw, 16px);
-    border-radius: 20px;
-    background: rgba(255, 255, 255, 0.15);
+    font-size: clamp(13px, 3vw, 15px);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(12px);
     box-shadow: 0 4px 10px rgba(0,0,0,0.25);
     border: 1px solid rgba(255,255,255,0.3);
     padding: 10px 0;
     transition: all 0.25s ease;
     color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
   .menu button:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.35);
+    transform: translateY(-3px) scale(1.05);
+  }
+
+  .menu button span {
+    font-size: 20px;
+    margin-bottom: 4px;
   }
 
   @keyframes slideUp {
@@ -194,8 +203,8 @@
 
   @media (max-width: 480px) {
     .container { width: 90%; padding: 10vw; }
-    .menu { width: 95%; gap: 8px; }
-    .menu button { font-size: 14px; padding: 10px; }
+    .menu { width: 95%; gap: 6px; }
+    .menu button { font-size: 12px; padding: 8px; }
     .profile img { width: 40px; height: 40px; }
   }
 </style>
@@ -227,11 +236,11 @@
 
   <!-- Menyu -->
   <div class="menu" id="menu" style="display:none;">
-    <button>Tariflar</button>
-    <button>Bonus</button>
-    <button>Spin</button>
-    <button>Balans</button>
-    <button>Profil</button>
+    <button><span>🍏</span>Tariflar</button>
+    <button><span>🎁</span>Bonus</button>
+    <button><span>🎡</span>Spin</button>
+    <button><span>💰</span>Balans</button>
+    <button><span>👤</span>Profil</button>
   </div>
 
 <script>
@@ -248,7 +257,7 @@
       welcome.style.display = 'none';
       menu.style.display = 'flex';
       profile.classList.add('show');
-      topButtons.classList.add('show'); // Sozlamalar va bildirishnomalar chiqadi
+      topButtons.classList.add('show');
     }, 500);
   });
 </script>
