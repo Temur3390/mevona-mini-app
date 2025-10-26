@@ -15,7 +15,7 @@ bot.start((ctx) => {
         [
           {
             text: "🌿 Mini ilovani ochish",
-            url: "https://rich820.github.io/mevona-mini-app/", // ← bu SENING URLING
+            url: "https://mevona.github.io/mevona-mini-app/", // ← bu SENING URLING
           },
         ],
       ],
