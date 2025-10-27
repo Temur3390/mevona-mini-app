@@ -27,46 +27,56 @@
   }
   button:hover { transform: scale(1.05); background: rgba(255,255,255,0.35); }
 
+  /* 👤 Profil oynasi */
   .profile {
-    position: fixed; top: 12px; left: 12px;
-    display: flex; align-items: center; gap: 10px;
+    position: fixed; top: 10px; left: 10px;
+    display: flex; align-items: center; gap: 8px;
     background: rgba(255,255,255,0.12); backdrop-filter: blur(15px);
-    border-radius: 16px; padding: 8px 12px; color: white;
+    border-radius: 16px; padding: 6px 10px; color: white;
     border: 1px solid rgba(255,255,255,0.2);
     opacity: 0; transform: translateY(-20px); transition: all 0.5s ease;
   }
   .profile.show { opacity: 1; transform: translateY(0); }
-  .profile img { width: 45px; height: 45px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.4); }
+  .profile img { width: 38px; height: 38px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.4); }
 
-  .profile-info { line-height: 1.3; }
-  .profile-info .balance { font-size: 14px; }
-  .profile-info .level { font-size: 12px; opacity: 0.8; }
+  .profile-info .balance { font-size: 13px; }
+  .profile-info .level { font-size: 11px; opacity: 0.8; }
 
-  /* 🔔⚙️ Oyna ichida joylashgan tugmalar */
+  /* 🔔⚙️ Tugmalar */
   .top-icons {
-    position: fixed; top: 12px; right: 12px;
+    position: fixed; top: 10px; right: 12px;
     display: flex; gap: 12px;
-    background: rgba(255,255,255,0.12);
-    backdrop-filter: blur(20px);
-    border-radius: 16px;
-    border: 1px solid rgba(255,255,255,0.25);
-    padding: 6px 10px;
     opacity: 0; transform: translateY(-20px);
     transition: all 0.5s ease;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
   }
   .top-icons.show { opacity: 1; transform: translateY(0); }
 
   .icon-btn {
-    width: 42px; height: 42px;
-    color: white; font-size: 18px;
+    width: 46px; height: 46px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 50%;
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: white; font-size: 20px;
     display: flex; align-items: center; justify-content: center;
-    cursor: pointer; transition: transform 0.2s ease;
-  }
-  .icon-btn:active {
-    transform: scale(1.2);
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+    transition: all 0.25s ease;
   }
 
+  .icon-btn:active {
+    transform: scale(1.25);
+    animation: bounce 0.4s ease;
+  }
+
+  @keyframes bounce {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+    70% { transform: scale(0.9); }
+    100% { transform: scale(1); }
+  }
+
+  /* 🍎 Meva kartalari */
   .fruit-board {
     display: none; flex-wrap: wrap; justify-content: center;
     gap: 20px; margin-top: 100px; padding-bottom: 80px;
@@ -86,6 +96,7 @@
     background: rgba(255,255,255,0.1);
   }
 
+  /* 📱 Pastki menyu */
   .menu {
     position: fixed; bottom: 10px; left: 50%; transform: translateX(-50%);
     display: none; justify-content: space-around;
@@ -112,12 +123,11 @@
   <div class="profile" id="profile">
     <img src="https://cdn-icons-png.flaticon.com/512/147/147144.png" alt="avatar">
     <div class="profile-info">
-      <span class="balance">💰 Balans: 15 200 so'm</span>
+      <span class="balance">💰 Balans: 15 200 so'm</span><br>
       <span class="level">🏅 Level: 3</span>
     </div>
   </div>
 
-  <!-- 🔔⚙️ BIR OYNA ICHIDA -->
   <div class="top-icons" id="topIcons">
     <div class="icon-btn" id="notifBtn">🔔</div>
     <div class="icon-btn" id="settingsBtn">⚙️</div>
@@ -126,25 +136,25 @@
   <div class="fruit-board" id="fruitBoard">
     <div class="fruit-card">
       <img src="https://suret.pics/uploads/posts/2023-09/1695307402_2-84.jpg" alt="Olma">
-      <h3> Olma</h3>
+      <h3>Olma</h3>
       <div class="price" id="p1">3600 so'm</div>
       <canvas class="chart"></canvas>
     </div>
     <div class="fruit-card">
       <img src="https://shifo.uz/upload/iblock/bed/bedda0fdfd10a9e334a64af65d49f7d8.jpg" alt="Nok">
-      <h3> Nok</h3>
+      <h3>Nok</h3>
       <div class="price" id="p2">6700 so'm</div>
       <canvas class="chart"></canvas>
     </div>
     <div class="fruit-card">
       <img src="https://alaybazar.uz/upload/resize_cache/iblock/e51/500_500_2/uhikp3ibc5uv85ylhemsxxbl59nrw90p.jpg" alt="Apelsin">
-      <h3> Apelsin</h3>
+      <h3>Apelsin</h3>
       <div class="price" id="p3">8600 so'm</div>
       <canvas class="chart"></canvas>
     </div>
     <div class="fruit-card">
       <img src="https://cdn.beta.qalampir.uz/uploads/F7/s_rIyYvwYZu8sRmjt1e9bRo5A9GvtJ8z.jpg" alt="Banan">
-      <h3> Banan</h3>
+      <h3>Banan</h3>
       <div class="price" id="p4">11500 so'm</div>
       <canvas class="chart"></canvas>
     </div>
