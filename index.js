@@ -1,39 +1,28 @@
-import express from "express";
-import { Telegraf } from "telegraf";
+const { Telegraf, Markup } = require('telegraf');
 
-const app = express();
-const port = process.env.PORT || 3000;
+// Bot tokenini shu yerga yoz
+const bot = new Telegraf('8406803082:AAGb_eMH2RWMHTJQ2aNh1Gc4jfKt0nT73OQ');
 
-// 🔹 Telegram bot tokenini shu yerga yoz
-const bot = new Telegraf("8406803082:AAGb_eMH2RWMHTJQ2aNh1Gc4jfKt0nT73OQ");
-
-// 🔹 /start komandasi uchun tugma chiqadi
 bot.start((ctx) => {
-  ctx.reply("🍒 Mevonaga xush kelibsiz!", {
-    reply_markup: {
-      inline_keyboard: [
-        [
-          {
-            text: "🌿 Mini ilovani ochish",
-            url: "https://mevona.github.io/mevona-mini-app/", // ← bu SENING URLING
-          },
-        ],
-      ],
-    },
-  });
+  const text = `
+Salom, ${ctx.from.first_name} 👋
+🍏 <b>MEVONA</b> ga xush kelibsiz!
+
+🤯 Haqiqiy pul uchun yangi Telegram tapalkasi!
+💳 Qulay to'ldirish
+💰 Tez to'lovlar
+👥 Ro'yxatdan o'tish shart emas — shunchaki <b>«O‘ynash»</b> tugmasini bosing!
+👨‍💻 24/7 qo'llab-quvvatlash
+`;
+
+  ctx.replyWithHTML(
+    text,
+    Markup.keyboard([
+      ['📢 Telegram kanal', '🍏 Pul ishlash']
+    ]).resize()
+  );
 });
 
-// 🔹 Render uchun oddiy server
-app.get("/", (req, res) => {
-  res.send("Mevona bot ishlayapti ✅");
-});
-
-// 🔹 Botni ishga tushirish
 bot.launch();
-app.listen(port, () => {
-  console.log(`🚀 Server ${port}-portda ishlayapti`);
-});
 
-// 🔹 Xavfsizlik uchun to‘xtatishda signal
-process.once("SIGINT", () => bot.stop("SIGINT"));
-process.once("SIGTERM", () => bot.stop("SIGTERM"));
+console.log("🍏 MEVONA bot ishga tushdi!");
