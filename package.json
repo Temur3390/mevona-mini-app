@@ -1,0 +1,13 @@
+{
+  "name": "mevona-bot",
+  "version": "1.0.0",
+  "description": "Telegram bot MEVONA 🍏",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "telegraf": "^4.15.3"
+  }
+}
