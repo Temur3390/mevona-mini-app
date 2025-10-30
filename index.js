@@ -17,11 +17,18 @@ Salom, ${ctx.from.first_name} 👋
 
   ctx.replyWithHTML(
     text,
-    Markup.keyboard([
-      ['📢 Telegram kanal', '🍏 Pul ishlash']
+    Markup.inlineKeyboard([
+      [
+        Markup.button.url('📢 Telegram kanal', 'https://t.me/mevona_community'), // 🔗 bu yerga kanal havolasini yoz
+        Markup.button.callback('🍏 Pul ishlash', 'pul_ishlash')
+      ]
     ])
-    .resize()
   );
+});
+
+// "🍏 Pul ishlash" tugmasi bosilganda javob
+bot.action('pul_ishlash', (ctx) => {
+  ctx.reply("💰 Pul ishlash bo‘limiga xush kelibsiz!");
 });
 
 bot.launch();
