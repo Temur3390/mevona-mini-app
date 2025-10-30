@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MEVONA 🍋</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      height: 100vh;
+      background: linear-gradient(135deg, #fefefe10, #fefefe15);
+      backdrop-filter: blur(30px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    h1 {
+      color: #fff;
+      font-size: 22px;
+      font-weight: 600;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .lemon {
+      width: 120px;
+      height: 120px;
+      animation: float 2s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+
+    .menu {
+      position: fixed;
+      bottom: 30px;
+      display: flex;
+      gap: 15px;
+    }
+
+    .btn {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 12px;
+      padding: 12px 25px;
+      color: #fff;
+      font-weight: 500;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .btn:active {
+      transform: scale(1.1);
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    footer {
+      position: fixed;
+      bottom: 80px;
+      color: #ccc;
+      font-size: 14px;
+      font-weight: 300;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at top, #ffe25940, #ffa75120, transparent 70%);
+      z-index: -1;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Salom, <span id="username">foydalanuvchi</span> 👋</h1>
+
+  <img src="https://cdn-icons-png.flaticon.com/512/415/415733.png" alt="lemon" class="lemon">
+
+  <footer>🍋 MEVONA — pul ishlashning yangi usuli!</footer>
+
+  <div class="menu">
+    <button class="btn" onclick="telegramChannel()">📢 Telegram kanal</button>
+    <button class="btn" onclick="earnMoney()">💰 Pul ishlash</button>
+  </div>
+
+  <script>
+    // Telegram foydalanuvchi ma'lumotini olish
+    const urlParams = new URLSearchParams(window.location.search);
+    const username = urlParams.get('user') || "Mehmon";
+    document.getElementById('username').textContent = username;
+
+    // Tugma funksiyalari
+    function telegramChannel() {
+      window.open("https://t.me/mevona_channel", "_blank");
+    }
+
+    function earnMoney() {
+      alert("💰 Tez orada ishga tushadi! Boshlanishga tayyor turing!");
+    }
+  </script>
+</body>
+</html>
