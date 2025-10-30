@@ -19,16 +19,18 @@ Salom, ${ctx.from.first_name} 👋
     text,
     Markup.inlineKeyboard([
       [
-        Markup.button.url('📢 Telegram kanal', 'https://t.me/mevona_community'), // 🔗 bu yerga kanal havolasini yoz
-        Markup.button.callback('🍏 Pul ishlash', 'pul_ishlash')
+        Markup.button.url('📢 Telegram kanal', 'https://t.me/mevona_community'),
+        Markup.button.webApp('🍏 Pul ishlash', 'https://t.me/Mevaxona_bot/mevona_app')
       ]
     ])
   );
 });
 
-// "🍏 Pul ishlash" tugmasi bosilganda javob
-bot.action('pul_ishlash', (ctx) => {
-  ctx.reply("💰 Pul ishlash bo‘limiga xush kelibsiz!");
+// Optional — foydalanuvchi mini ilovadan chiqqanda
+bot.on('message', (ctx) => {
+  if (ctx.webAppData) {
+    console.log('Mini ilovadan maʼlumot keldi:', ctx.webAppData);
+  }
 });
 
 bot.launch();
