@@ -19,7 +19,8 @@ Salom, ${ctx.from.first_name} 👋
     text,
     Markup.keyboard([
       ['📢 Telegram kanal', '🍏 Pul ishlash']
-    ]).resize()
+    ])
+    .resize()
   );
 });
 
